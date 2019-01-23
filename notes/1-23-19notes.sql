@@ -43,3 +43,10 @@ SELECT * FROM orderdetails
 -- E.g. orderTotal
 SELECT *, quantityOrdered * priceEach AS orderTotal FROM orderdetails
 	ORDER BY orderTotal desc;
+	
+SELECT * FROM employees WHERE officeCode IN (1,2,3);
+
+-- Math functions from Excel are available as well
+-- Aggregate functions (e.g. SUM, AVG, etc.) grab a bunch of rows and combine them into one thing
+SELECT AVG(quantityOrdered * priceEach) AS orderAverage FROM orderdetails
+	ORDER BY orderAverage desc;

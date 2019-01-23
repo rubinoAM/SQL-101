@@ -50,3 +50,39 @@ SELECT * FROM employees WHERE officeCode IN (1,2,3);
 -- Aggregate functions (e.g. SUM, AVG, etc.) grab a bunch of rows and combine them into one thing
 SELECT AVG(quantityOrdered * priceEach) AS orderAverage FROM orderdetails
 	ORDER BY orderAverage desc;
+
+-- JOIN allows us to bring 2 tables together and makes tables wider
+-- UNION makes tables taller
+
+SELECT payments.amount, customers.customerName, customers.salesRepEmployeeNumber FROM payments
+	JOIN customers ON payments.customerNumber = customers.customerNumber
+	WHERE amount > 1000;
+
+-- Get payments above 1000 with employee sales rep names
+SELECT payments.amount, customers.customerName, CONCAT(employees.firstName," ",employees.lastName) AS employeeName FROM payments
+	INNER JOIN customers ON payments.customerNumber = customers.customerNumber
+	INNER JOIN employees ON customers.salesRepEmployeeNumber = employees.employeeNumber
+	WHERE amount > 1000
+	ORDER BY amount desc;
+	
+SELECT * FROM employees
+	INNER JOIN customers ON customers.salesRepEmployeeNumber = employees.employeeNumber;
+
+-- TABLE CREATION
+CREATE TABLE test(
+	id int(11),
+	name varchar(50),
+	job varchar(50),
+	salary int(6)
+);
+
+-- Drop a column
+ALTER TABLE test DROP COLUMN salary;
+
+-- Insert a record
+INSERT INTO test (id,name,job)
+	VALUES (1,'Rob','Teacher');
+	
+-- Update a record
+UPDATE test SET name = "Robert"
+	WHERE name = "Rob";

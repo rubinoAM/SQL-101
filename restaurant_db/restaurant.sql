@@ -6,5 +6,6 @@ CREATE TABLE restaurant(
 	category varchar(50),
 	favoriteDish varchar(50),
 	doesTakeout int(1),
-	lastTimeYouAteThere date
+	lastTimeYouAteThere date,
+    primary key (id)
 );

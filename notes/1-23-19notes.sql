@@ -28,3 +28,7 @@ SELECT * FROM productlines
 -- We want last names with 'ur' in them, and first names that start with 'd'
 SELECT * FROM employees
 	WHERE lastName LIKE '%ur%' AND firstName LIKE 'D%';
+	
+-- After the WHERE clause, you can add ORDER BY, which expects a column and direction (asc/desc)
+SELECT * FROM offices
+	ORDER BY city asc;

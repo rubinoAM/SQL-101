@@ -32,3 +32,14 @@ SELECT * FROM employees
 -- After the WHERE clause, you can add ORDER BY, which expects a column and direction (asc/desc)
 SELECT * FROM offices
 	ORDER BY city asc;
+	
+-- After everything you can choose to limit the number of rows returned
+-- LIMIT takes 2 args (where to start & how many)
+SELECT * FROM orderdetails
+	ORDER BY priceEach desc
+	LIMIT 0,5; -- 0 is the default starting point
+	
+-- You can create temporary columns in queries using AS before FROM
+-- E.g. orderTotal
+SELECT *, quantityOrdered * priceEach AS orderTotal FROM orderdetails
+	ORDER BY orderTotal desc;

@@ -37,4 +37,22 @@ router.post('/addItem',(req, res, next)=>{
   //res.json(req.body);
 });
 
+//Wildcard route in Express has a colon in front of it
+//Wildcard routes are available in req.params
+router.get('/delete/:id',(req,res,next)=>{
+  const deleteQuery = `DELETE FROM tasks WHERE id = ?;`;
+  connection.query(deleteQuery,[req.params.id],(err,results)=>{
+    if(err){
+      throw(err);
+    } else {
+      res.redirect('/');
+    }
+  })
+  //res.json(req.params);
+});
+
+router.post('/edit/:id',(req,res,next)=>{
+  //DO IT
+});
+
 module.exports = router;

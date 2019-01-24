@@ -8,6 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+//Helmet is important for securing your Express app
+var helmet = require('helmet');
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

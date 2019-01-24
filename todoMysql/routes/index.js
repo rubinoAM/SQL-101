@@ -51,8 +51,8 @@ router.get('/delete/:id',(req,res,next)=>{
   //res.json(req.params);
 });
 
-router.post('/edit/:id',(req,res,next)=>{
-  //DO IT
+router.get('/edit/:id',(req,res,next)=>{
+  res.render('/update');
 });
 
 module.exports = router;

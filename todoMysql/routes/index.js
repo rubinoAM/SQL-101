@@ -10,7 +10,10 @@ connection.connect();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  const selectQuery = `SELECT * FROM tasks;`;
+  connection.query(selectQuery,(err,results)=>{
+    res.render('index',{taskArray: results});
+  });
 });
 
 router.post('/addItem',(req, res, next)=>{

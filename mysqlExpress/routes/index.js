@@ -13,7 +13,15 @@ router.get('/', function(req, res, next) {
   /*  We want to load a list of our restaurants on the homepage
       This is inside of mysql
       Before we render the view, we want to get the data and send it over to the view*/
-  res.render('index', { title: 'Express' });
+  const query = 'SELECT * FROM restaurant;';
+  connection.query(query,(err,results)=>{
+    if(err){
+      throw(err);
+    } else {
+      res.json(results);
+    }
+  });
+  //res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

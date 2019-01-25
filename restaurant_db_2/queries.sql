@@ -21,3 +21,7 @@ SELECT category, COUNT(category) AS total
 SELECT restaurants.name, reviews.stars FROM restaurants
 	INNER JOIN reviews on restaurants.id = reviews.restaurant_id
 	WHERE reviews.stars = 5;
+
+SELECT restaurants.category, AVG(reviews.stars) AS avg_score FROM restaurants
+	INNER JOIN reviews on restaurants.id = reviews.restaurant_id
+	GROUP BY category;

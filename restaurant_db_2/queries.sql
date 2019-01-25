@@ -13,3 +13,7 @@ SELECT users.name,MIN(reviews.stars) AS lowest_rating FROM reviews
 SELECT restaurants.name, COUNT(reviews.id) AS num_reviews FROM reviews
 	INNER JOIN restaurants on restaurants.id = reviews.restaurant_id
 	GROUP BY restaurants.id;
+
+SELECT category, COUNT(category) AS total
+	FROM restaurants
+	GROUP BY category;

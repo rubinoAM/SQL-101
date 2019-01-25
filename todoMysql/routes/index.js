@@ -52,7 +52,11 @@ router.get('/delete/:id',(req,res,next)=>{
 });
 
 router.get('/edit/:id',(req,res,next)=>{
-  res.render('/update');
+  res.json(req.params.id);
 });
+
+// router.get('/edit/:post',(req,res,next)=>{
+//   res.render('/update');
+// });
 
 module.exports = router;

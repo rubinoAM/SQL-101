@@ -52,8 +52,26 @@ router.get('/delete/:id',(req,res,next)=>{
 });
 
 router.get('/edit/:id',(req,res,next)=>{
-  res.json(req.params.id);
+  //res.json(req.params.id);
+  const selectQuery = `SELECT * FROM tasks WHERE id = ?;`;
+  connection.query(selectQuery,[req.params.id],(err,results)=>{
+    let formattedDate = formatDate(results[0].taskDate.toString());
+    results[0].taskDate = formattedDate;
+    res.render('update',{
+      task:results[0]
+    });
+  })
 });
+
+function formatDate(date) {
+  let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [year, month, day].join('-');
+}
 
 // router.get('/edit/:post',(req,res,next)=>{
 //   res.render('/update');

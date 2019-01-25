@@ -17,3 +17,7 @@ SELECT restaurants.name, COUNT(reviews.id) AS num_reviews FROM reviews
 SELECT category, COUNT(category) AS total
 	FROM restaurants
 	GROUP BY category;
+
+SELECT restaurants.name, reviews.stars FROM restaurants
+	INNER JOIN reviews on restaurants.id = reviews.restaurant_id
+	WHERE reviews.stars = 5;

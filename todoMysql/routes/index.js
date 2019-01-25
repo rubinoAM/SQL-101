@@ -73,8 +73,21 @@ function formatDate(date) {
   return [year, month, day].join('-');
 }
 
-// router.get('/edit/:post',(req,res,next)=>{
-//   res.render('/update');
-// });
+router.post('/editItem',(req, res, next)=>{
+  const newTask = req.body.newTask;
+  const newTaskDate = req.body.newTaskDate;
+  // ^ : Susceptible to SQL Injections
+  const updateQuery = `UPDATE tasks SET
+    taskName = ?,
+    taskDate = ?
+    WHERE id = ?;`;
+  connection.query(updateQuery,[req.body.newTask,req.body.newTaskDate,req.body.taskId],(err,results)=>{
+    if(err){
+      throw(err);
+    } else {
+      res.redirect('/');
+    }
+  });
+});
 
 module.exports = router;
